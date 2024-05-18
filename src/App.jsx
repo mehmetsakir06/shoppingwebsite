@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import SearchProduct from './Components/SearchProduct';
 import Category from './Components/Category';
 import ProductDetail from './Components/ProductDetail';
+import Cart from './Components/Cart';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="search" element={<SearchProduct />} />
         <Route path="category" element={<Category />} />
         <Route path="/details/:productId" element={<ProductDetail />} />
+        <Route path="/Cart" element={<Cart />} />
       </Routes>
 
 

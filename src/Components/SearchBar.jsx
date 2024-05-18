@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { searchProduct } from '../redux/SearchSlice';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,12 @@ function SearchBar() {
     const [filteredItems, setFilteredItems] = useState([]);
     const { product } = useSelector(state => state.products)
     const dispatch = useDispatch();
+    useEffect(() => {
+        handleSearching
+
+
+    }, [query])
+
 
     const handleSearching = (event) => {
         const query = event.target.value;

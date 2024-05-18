@@ -1,10 +1,13 @@
 import { Disclosure } from '@headlessui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { getCategories } from '../redux/CategorySlice';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCategoryScreen } from '../redux/CategoryScreenSlice';
+import { IoCartOutline } from "react-icons/io5";
+
+
 
 
 function classNames(...classes) {
@@ -14,13 +17,18 @@ function classNames(...classes) {
 
 
 export default function Navbar() {
-    const dispatch = useDispatch()
-    const [category, setCategory] = useState('')
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [category, setCategory] = useState('');
 
 
-    const { categories } = useSelector(state => state.categories)
+    const { categories } = useSelector((state) => state.categories)
+    const { totalCount } = useSelector((state) => state.cart)
+
+
 
     useEffect(() => {
+
         dispatch(getCategories())
         dispatch(getCategoryScreen(category))
 
@@ -61,9 +69,15 @@ export default function Navbar() {
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <div className="absolute inset-y-0 right-0 flex items-center  pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             <SearchBar />
-                            <div className='ml-10 '>Sepet</div>
+                            <div onClick={() => navigate("/Cart")} className='cursor-pointer' >
+                                <div className='ml-10 text-4xl text-yellow-500 relative'  ><IoCartOutline />
+
+                                </div>
+                                <div className='mt-1 absolute -right-2 top-0 text-white text-md rounded-full bg-yellow-600 ' >{totalCount !== 0 && totalCount}</div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

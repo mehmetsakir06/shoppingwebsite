@@ -14,13 +14,19 @@ function Category() {
 
     }, [dispatch])
 
+
+
     return (
         <div className='mt-6 grid grid-cols-1  gap-y-10 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:gap-x-1 '>
 
             {
                 categoryScreen.map((item, index) => (
 
-                    <div className='m-1  border-2 rounded-lg border-indigo-100 p-1 bg-slate-100  ' key={index} >
+                    <div onClick={() => {
+                        dispatch(getSingleProduct(item.id));
+                        navigate(`/details/${item.id}`);
+
+                    }} className='m-1  border-2 rounded-lg border-indigo-100 p-1 bg-slate-100  ' key={index} >
                         <div className='  w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 xs:mih-h-30 md:h-40 lg:h-80  h-full'> <img className='cursor-pointer h-full w-full object-fill   lg:h-full lg:w-full' src={item.image} /></div>
                         <div className='mt-4 flex justify-between '>
 

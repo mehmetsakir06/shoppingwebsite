@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../redux/ProductListSlice';
 import ReactPaginate from 'react-paginate';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getSingleProduct } from '../redux/SingleProductSlice';
-
+import { BsFillStarFill } from "react-icons/bs";
 
 function HomePage() {
 
@@ -35,7 +35,7 @@ function HomePage() {
 
         dispatch(getProducts())
 
-    }, [dispatch])
+    }, [])
 
 
 
@@ -47,9 +47,9 @@ function HomePage() {
                     currentItems.map((item, index) => (
 
                         <div onClick={() => {
-
-                            navigate(`/details/${item.id}`);
                             dispatch(getSingleProduct(item.id));
+                            navigate(`/details/${item.id}`);
+
                         }} className='m-1  border-2 rounded-lg border-indigo-100 p-1 bg-slate-100  ' key={index} >
 
                             <div className=' aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 '> <img className='cursor-pointer h-full w-full object-fill   lg:h-full lg:w-full' src={item.image} /></div>
@@ -57,7 +57,7 @@ function HomePage() {
 
                                 <div className=' cursor-pointer text-gray-700 overflow-hidden'> <h2>{item.title}</h2> </div>
                                 <div className='ml-12'>
-                                    <div className='mb-2'>{item.rating.rate}</div>
+                                    <div className='mb-2'>{item.rating.rate} <span className='text-amber-400 absolute mx-2 my-1'><BsFillStarFill /> </span></div>
                                     <div className='text-sm font-medium text-gray-900 text-nowrap '>{item.price} TL</div>
                                 </div>
                             </div>
@@ -67,7 +67,8 @@ function HomePage() {
 
             </div>
             <ReactPaginate
-                className=' grid grid-cols-4 bg-gray-500 w-40 items-center m-auto my-1 p-2'
+
+                className=' grid grid-cols-4 bg-gray-300 rounded-full  w-40 m-auto my-1 p-2'
                 nextLabel="nt>"
                 onPageChange={handlePageClick}
                 pageCount={pageCount}
