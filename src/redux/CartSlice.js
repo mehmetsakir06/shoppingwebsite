@@ -24,12 +24,11 @@ const cartSlice = createSlice({
         },
         cartCount: (state) => {
             state.totalCount += 1
-
         },
 
         increment: (state, action) => {
             state.cart.find(a => a.id === action.payload).count += 1;
-            //state.totalCount += 1
+
         },
 
         decrement: (state, action) => {
@@ -37,32 +36,25 @@ const cartSlice = createSlice({
                 state.cart.find(a => a.id === action.payload).count -= 1;
                 state.totalCount -= 1
             }
-
-            //state.totalCount += 1
         },
-
-
+        afterRemoveTotalCount: (state, action) => {
+            state.totalCount -= action.payload
+        },
     },
+
     extraReducers: (builder) => {
         builder.addCase(addCart.fulfilled, (state, action) => {
             if (state.cart.find(cartElement => cartElement.id === action.payload.id)) {
                 const cartSendId = action.payload.id
-
-
             }
             else {
                 state.cart.push({ ...action.payload, count: 1 });
                 state.totalCount += 1
             }
-
-
-
-
-
-
         })
     }
 
 })
-export const { deleteProduct, cartCount, increment, decrement } = cartSlice.actions
+
+export const { deleteProduct, cartCount, increment, decrement, afterRemoveTotalCount } = cartSlice.actions
 export default cartSlice.reducer;

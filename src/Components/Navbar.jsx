@@ -8,24 +8,16 @@ import { getCategoryScreen } from '../redux/CategoryScreenSlice';
 import { IoCartOutline } from "react-icons/io5";
 
 
-
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-
-
 
 export default function Navbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [category, setCategory] = useState('');
-
-
     const { categories } = useSelector((state) => state.categories)
     const { totalCount } = useSelector((state) => state.cart)
-
-
 
     useEffect(() => {
 
