@@ -8,15 +8,11 @@ import ProductDetail from './Components/ProductDetail';
 import Cart from './Components/Cart';
 import HomePage from './Components/HomePage';
 
-
-
 function App() {
 
   return (
-
     <Router>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="search" element={<SearchProduct />} />
@@ -24,8 +20,6 @@ function App() {
         <Route path="/details/:productId" element={<ProductDetail />} />
         <Route path="/Cart" element={<Cart />} />
       </Routes>
-
-
     </Router>
   )
 }

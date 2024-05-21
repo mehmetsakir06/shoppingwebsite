@@ -3,14 +3,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const initialState = {
     cart: [],
     totalCount: 0,
-    cartSendId: ''
 }
 
 export const addCart = createAsyncThunk('addcart', async (cartId) => {
     const response = await fetch(`https://fakestoreapi.com/products/${cartId}`)
     const data = response.json();
     return data;
-
 })
 
 const cartSlice = createSlice({
@@ -45,7 +43,7 @@ const cartSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(addCart.fulfilled, (state, action) => {
             if (state.cart.find(cartElement => cartElement.id === action.payload.id)) {
-                const cartSendId = action.payload.id
+
             }
             else {
                 state.cart.push({ ...action.payload, count: 1 });

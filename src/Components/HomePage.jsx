@@ -8,23 +8,16 @@ import { BsFillStarFill } from "react-icons/bs";
 
 function HomePage() {
 
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
     const { product } = useSelector(state => state.products)
-
-
     const [itemOffset, setItemOffset] = useState(0);
 
     const itemsPerPage = 15;
     const endOffset = itemOffset + itemsPerPage;
-
     const currentItems = product.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(product.length / itemsPerPage);
-
-
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % product.length;
@@ -32,20 +25,15 @@ function HomePage() {
     };
 
     useEffect(() => {
-
         dispatch(getProducts())
 
     }, [])
 
-
-
     return (
         <>
-            <div className='mt-6 grid grid-cols-1  gap-y-10 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:gap-x-1 '>
-
+            <div className='mt-2 grid grid-cols-1  gap-y-6 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:gap-x-1 '>
                 {
                     currentItems.map((item, index) => (
-
                         <div onClick={() => {
 
                             dispatch(getSingleProduct(item.id));
@@ -59,7 +47,7 @@ function HomePage() {
                                 <div className=' cursor-pointer text-gray-700 overflow-hidden'> <h2>{item.title}</h2> </div>
                                 <div className='ml-12'>
                                     <div className='mb-2'>{item.rating.rate} <span className='text-amber-400 absolute mx-2 my-1'><BsFillStarFill /> </span></div>
-                                    <div className='text-sm font-medium text-gray-900 text-nowrap '>{item.price} TL</div>
+                                    <div className='text-sm font-medium text-gray-900 text-nowrap text-orange-600 '>{item.price} TL</div>
                                 </div>
                             </div>
                         </div>

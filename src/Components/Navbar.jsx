@@ -1,12 +1,11 @@
 import { Disclosure } from '@headlessui/react'
-import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../redux/CategorySlice';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import { Link, useNavigate } from "react-router-dom";
 import { getCategoryScreen } from '../redux/CategoryScreenSlice';
 import { IoCartOutline } from "react-icons/io5";
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,13 +18,11 @@ export default function Navbar() {
     const { categories } = useSelector((state) => state.categories)
     const { totalCount } = useSelector((state) => state.cart)
 
-    useEffect(() => {
 
+    useEffect(() => {
         dispatch(getCategories())
         dispatch(getCategoryScreen(category))
-
     }, [dispatch, category])
-
 
     return (
         <Disclosure as="nav" className="bg-gray-700 sticky top-0">

@@ -1,24 +1,28 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoryScreen } from '../redux/CategoryScreenSlice';
-
+import { BsFillStarFill } from "react-icons/bs";
+import { getSingleProduct } from '../redux/SingleProductSlice';
+import LoadingScreen from './LoadingScreen';
+import { useNavigate } from 'react-router-dom';
 
 function Category() {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { categoryScreen } = useSelector(state => state.categoryScreen)
-
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(getCategoryScreen())
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 400);
+    }, [categoryScreen])
 
-    }, [dispatch])
-
-
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
 
     return (
         <div className='mt-6 grid grid-cols-1  gap-y-10 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:gap-x-1 '>
-
             {
                 categoryScreen.map((item, index) => (
 
@@ -32,8 +36,8 @@ function Category() {
 
                             <div className=' cursor-pointer text-gray-700 overflow-hidden'> <h2>{item.title}</h2> </div>
                             <div className='ml-12'>
-                                <div className='mb-2'>{item.rating.rate}</div>
-                                <div className='text-sm font-medium text-gray-900 text-nowrap '>{item.price} TL</div>
+                                <div className='flex my-2' >{item.rating.rate} <span className='text-amber-400 absolute mx-6 my-1'><BsFillStarFill /> </span> </div>
+                                <div className='text-sm font-medium text-nowrap text-orange-600  '>{item.price} TL</div>
                             </div>
                         </div>
                     </div>

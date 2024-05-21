@@ -13,7 +13,6 @@ function SearchBar() {
     useEffect(() => {
         handleSearching
 
-
     }, [query])
 
 
@@ -21,13 +20,11 @@ function SearchBar() {
         const query = event.target.value;
         if (query !== '') {
             setQuery(query);
-
             navigate("search")
             const filtered = product.filter((item) =>
                 item.title.toLowerCase().includes(query.toLowerCase())
             );
             setFilteredItems(filtered)
-
             dispatch(searchProduct({ filteredItems }));
         }
         else {
@@ -35,7 +32,6 @@ function SearchBar() {
             setQuery('')
         }
     };
-
     return (
         <input className='w-40 bg-gray-300 rounded-md p-2 ' type="text" placeholder='Search' value={query} onChange={handleSearching} />
     )

@@ -1,19 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { afterRemoveTotalCount, cartCount, decrement, deleteProduct, increment } from "../redux/CartSlice";
-import { useState } from "react";
-
 
 function Cart() {
     const dispatch = useDispatch();
-    let totalPrice = 0;
-
-
+  
     const { cart } = useSelector(state => state.cart);
-    const { cartSendId } = useSelector(state => state.cart)
 
-
-
-    console.log("count", cartSendId)
     return (
         <div >
 
@@ -39,12 +31,7 @@ function Cart() {
                     <div className="absolute bottom-10 right-14 text-3xl bg-white text-orange-600 font-semibold">Total Price : {totalPrice += (item.count * item.price)} TL</div>
                 </div>
             )}
-
-
-
         </div>
-
-
     )
 }
 
