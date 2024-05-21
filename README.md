@@ -3,6 +3,7 @@
 * Redux
 * React Router DOM
 * React Icons
+* React Paginate
 * Tailwind CSS
   
 
